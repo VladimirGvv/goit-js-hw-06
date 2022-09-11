@@ -11,20 +11,15 @@ createBtn.addEventListener('click', getTheTotalBoxes);
 destroyBtn.addEventListener('click', removalBoxes);
 
 
-console.dir(controls.children)
-function getTheTotalBoxes() {
-  let amount = 0;
 
-  for (const key of controls.children) {
-    if (key.tagName !== 'INPUT') continue;
-    amount = Number(key.value);
-    
-  }
+function getTheTotalBoxes() {
+  let amount = document.querySelector('#controls input').value
 
   totalBoxes(amount);
 }
 
 function totalBoxes(amount) {
+  const totalBox = [];
   let sizeBox = 30;
   for (let i = 0; i < amount; i += 1) {
     const box = document.createElement("div");
@@ -32,9 +27,11 @@ function totalBoxes(amount) {
     box.style.height = `${sizeBox}px`;
     sizeBox += 10;
     box.style.backgroundColor = getRandomHexColor();
-    boxes.append(box);
+    totalBox.push(box);
   }
+  boxes.append(...totalBox);
 };
+
 
 function removalBoxes() {
   boxes.innerHTML = '';
